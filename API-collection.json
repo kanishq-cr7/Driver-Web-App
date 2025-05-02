@@ -4,7 +4,7 @@
 		"name": "IFN666 Assignment 2 API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "43470723",
-		"_collection_link": "https://kavinsorn.postman.co/workspace/KavinSorn's-Workspace~66cb034f-3a65-4d62-8f41-82c2dbe1798f/collection/43470723-a1bc5c49-44f3-4eac-a51b-595c803f7458?action=share&source=collection_link&creator=43470723"
+		"_collection_link": "https://kavinsorn.postman.co/workspace/66cb034f-3a65-4d62-8f41-82c2dbe1798f/collection/43470723-a1bc5c49-44f3-4eac-a51b-595c803f7458?action=share&source=collection_link&creator=43470723"
 	},
 	"item": [
 		{
@@ -435,6 +435,95 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Grab the token from the JSON response and store it in an env var\r",
+									"const json = pm.response.json();\r",
+									"pm.environment.set(\"authToken\", json.token);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"alice\",\r\n  \"password\": \"Password123!\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://1659-122-172-84-37.ngrok-free.app/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"1659-122-172-84-37",
+								"ngrok-free",
+								"app"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
