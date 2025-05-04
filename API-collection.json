@@ -44,7 +44,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"first_name\": \"Bob\",\r\n  \"last_name\": \"Builder\",\r\n  \"licence_number\": \"B12345\",\r\n  \"createdBy\": \"{{userId}}\"\r\n}\r\n",
+							"raw": "{\r\n  \"first_name\": \"kanishq\",\r\n  \"last_name\": \"mcbob\",\r\n  \"licence_number\": \"BOD069\",\r\n  \"createdBy\": \"{{userId}}\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -309,7 +309,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"model\": \"Ford Transit\",\r\n  \"plate\": \"XYZ-6789\",\r\n  \"type\": \"Van\",\r\n  \"driver\": \"{{driverId}}\"\r\n}\r\n",
+							"raw": "{\r\n  \"model\": \"Ford Transit\",\r\n  \"plate\": \"ABC-5733\",\r\n  \"type\": \"Minivan\",\r\n  \"driver\": \"{{driverId}}\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -446,13 +446,19 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Grab the token from the JSON response and store it in an env var\r",
 									"const json = pm.response.json();\r",
 									"pm.environment.set(\"authToken\", json.token);\r",
 									""
 								],
 								"type": "text/javascript",
 								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -492,6 +498,41 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Test Query Filter",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://1659-122-172-84-37.ngrok-free.app/api/drivers?first_name=Rob&sortBy=last_name&sortOrder=asc",
+					"protocol": "https",
+					"host": [
+						"1659-122-172-84-37",
+						"ngrok-free",
+						"app"
+					],
+					"path": [
+						"api",
+						"drivers"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "Rob"
+						},
+						{
+							"key": "sortBy",
+							"value": "last_name"
+						},
+						{
+							"key": "sortOrder",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
