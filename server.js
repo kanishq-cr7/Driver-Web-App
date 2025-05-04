@@ -16,6 +16,9 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error("MongoDB connection error:", err));
 
+
+app.set("trust proxy", 1); // Trust the first proxy (e.g., ngrok)
+
 // 2. Global Middleware
 app.use(helmet());  
 app.use(cors({ origin: process.env.CORS_ORIGIN }));
